@@ -1,0 +1,43 @@
+#include<iostream>
+#include<conio.h>
+using namespace std;
+
+class time
+{
+int hrs,min,sec;        
+public:
+void get()
+{
+cout<<"\n\tEnter time (in hrs:minutes:seconds form): ";
+cin>>hrs>>min>>sec;
+}
+void show()
+{
+cout<<"\n"<<hrs<<":"<<min<<":"<<sec;
+}
+//It is mentioned in question to pass object as an argument:time t2-argument-which is an object also.
+time operator +(time t2)//I've used class name before operator keyword becuase I'm passing object as a parameter
+{
+time t3;
+t3.sec=sec + t2.sec;
+t3.sec=t3.sec%60;
+
+t3.min=min + t2.min + (t3.sec/60);
+t3.min=t3.min%60;
+
+t3.hrs=hrs + t2.hrs + (t3.min/60);
+
+return t3;
+}
+};
+int main()      //Entry point of the prorgam
+{
+time t1,t2,t3;      //objects
+t1.get();
+t2.get();
+t1.show();
+t2.show();
+t3=t1 + t2;
+t3.show();
+return 0;
+}
